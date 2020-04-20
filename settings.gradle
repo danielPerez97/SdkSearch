@@ -12,6 +12,8 @@ include ':frontend:chrome-extension'
 include ':frontend:chrome-extension:background'
 include ':frontend:chrome-extension:content'
 include ':frontend:chrome-extension:source-linker'
+include ':frontend:firefox-extension'
+include ':frontend:firefox-extension:background'
 include ':frontend:web'
 include ':presentation:binder'
 

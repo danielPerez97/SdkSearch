@@ -1,0 +1,52 @@
+apply plugin: 'distribution'
+
+configurations {
+    content
+}
+
+dependencies {
+    content project(path: ':frontend:firefox-extension:background', configuration: 'content')
+//    content project(path: ':frontend:firefox-extension:content', configuration: 'content')
+}
+
+distributions {
+    release {
+        baseName = 'sdk-search-release'
+
+        contents {
+            from('manifest.json') {
+                expand(
+                        name: 'Android SDK Search',
+                        version: buildConfig.version.fullName,
+                        keyword: 'ad'
+                )
+            }
+            from 'src/common/dist'
+            from configurations.content
+
+            into '/'
+        }
+    }
+    debug {
+        baseName = 'sdk-search-debug'
+
+        contents {
+            from('manifest.json') {
+                expand(
+                        name: 'Android SDK Search (Debug)',
+                        version: buildConfig.version.fullName,
+                        keyword: 'ad2'
+                )
+            }
+            from 'src/common/dist'
+            from configurations.content
+
+            into '/'
+        }
+    }
+}
+
+//releaseDistZip.inputs.property('fullName', buildConfig.version.fullName)
+//releaseDistTar.enabled = false
+//debugDistZip.inputs.property('fullName', buildConfig.version.fullName)
+//debugDistTar.enabled = false

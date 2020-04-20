@@ -6,6 +6,7 @@ dependencies {
   implementation project(':search:ui-omnibox')
   implementation project(':store:item:js-storage-area')
   implementation project(':chrome-platform')
+  implementation project(':api:dac-proxy')
   implementation deps.timber.js
 }
 
